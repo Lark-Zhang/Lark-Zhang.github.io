@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="深度学习存储和操作数据的主要接口是张量(n维数组)。它提供了各种功能,包括基本数学运算、广播、索引、切片、内存节省和转换其他Python对象。 导入模块12from mxnet import np, npxnpx.set_up()  np模块包含NumPy支持的函数; 而npx模块包含一组扩展函数,用来在类似NumPy的环境中实现深度学习开发。当使用张量时,几乎总是会调用set_np函数,这是为了">
+  <meta name="description" content="深度学习存储和操作数据的主要接口是张量(n维数组)。它提供了各种功能,包括基本数学运算、广播、索引、切片、内存节省和转换其他Python对象。 导入模块 12from mxnet import np, npxnpx.set_up() np模块包含NumPy支持的函数; 而npx模块包含一组扩展函数,用来在类似NumPy的环境中实现深度学习开发。 当使用张量时,几乎总是会调用set_np函数,这是为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="张量 (Numpy入门)">
 <meta property="og:url" content="http://example.com/2025/04/14/%E5%BC%A0%E9%87%8F%20(Numpy%E5%85%A5%E9%97%A8)/index.html">
 <meta property="og:site_name" content="Lark&#39;site">
-<meta property="og:description" content="深度学习存储和操作数据的主要接口是张量(n维数组)。它提供了各种功能,包括基本数学运算、广播、索引、切片、内存节省和转换其他Python对象。 导入模块12from mxnet import np, npxnpx.set_up()  np模块包含NumPy支持的函数; 而npx模块包含一组扩展函数,用来在类似NumPy的环境中实现深度学习开发。当使用张量时,几乎总是会调用set_np函数,这是为了">
+<meta property="og:description" content="深度学习存储和操作数据的主要接口是张量(n维数组)。它提供了各种功能,包括基本数学运算、广播、索引、切片、内存节省和转换其他Python对象。 导入模块 12from mxnet import np, npxnpx.set_up() np模块包含NumPy支持的函数; 而npx模块包含一组扩展函数,用来在类似NumPy的环境中实现深度学习开发。 当使用张量时,几乎总是会调用set_np函数,这是为">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-14T10:01:20.047Z">
 <meta property="article:modified_time" content="2025-04-14T10:01:20.047Z">
@@ -192,31 +192,36 @@
 
       
         <p>深度学习存储和操作数据的主要接口是张量(n维数组)。它提供了各种功能,包括基本数学运算、广播、索引、切片、内存节省和转换其他Python对象。</p>
-<h4 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a><strong>导入模块</strong></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> np, npx</span><br><span class="line">npx.set_up()</span><br></pre></td></tr></table></figure>
-
-<p>np模块包含NumPy支持的函数; 而npx模块包含一组扩展函数,用来在类似NumPy的环境中实现深度学习开发。<br>当使用张量时,几乎总是会调用<code>set_np</code>函数,这是为了兼容MXNet的其他张量处理组件。</p>
-<h4 id="创建ndarray的Instance"><a href="#创建ndarray的Instance" class="headerlink" title="创建ndarray的Instance."></a><strong>创建ndarray的Instance.</strong></h4><p>默认浮点数,采用基于CPU的计算</p>
+<h4 id="导入模块"><strong>导入模块</strong></h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> np, npx</span><br><span class="line">npx.set_up()</span><br></pre></td></tr></table></figure>
+<p>np模块包含NumPy支持的函数; 而npx模块包含一组扩展函数,用来在类似NumPy的环境中实现深度学习开发。<br>
+当使用张量时,几乎总是会调用<code>set_np</code>函数,这是为了兼容MXNet的其他张量处理组件。</p>
+<h4 id="创建ndarray的instance"><strong>创建ndarray的Instance.</strong></h4>
+<p>默认浮点数,采用基于CPU的计算</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
 <p>创建全0、全1、其他常量或特定分布</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">np.zeros((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">np.ones((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">np.random.normal(<span class="number">0</span>,<span class="number">1</span>,size=(<span class="number">3</span>,<span class="number">4</span>)) <span class="comment"># 标准高斯分布</span></span><br><span class="line">np.array([[<span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]]) <span class="comment"># 嵌套列表生成 </span></span><br></pre></td></tr></table></figure>
 <p>属性、方法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x.size  <span class="comment"># 访问元素总数</span></span><br><span class="line">x.shape <span class="comment"># 访问张量的形状</span></span><br><span class="line">x.reshape(<span class="number">3</span>,<span class="number">4</span>) <span class="comment"># 指定维度改变形状,可设-1自动计算大小</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a><strong>运算符</strong></h4><p><strong>按元素(elementwise)运算</strong><br>对于任意具有相同形状的张量,常见的标准算术运算符(二元运算符)都可以被升级为按元素运算.</p>
+<h4 id="运算符"><strong>运算符</strong></h4>
+<p><strong>按元素(elementwise)运算</strong><br>
+对于任意具有相同形状的张量,常见的标准算术运算符(二元运算符)都可以被升级为按元素运算.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>])  </span><br><span class="line">y = np.array([<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>])  </span><br><span class="line">x + y, x - y, x * y, x / y, x ** y</span><br></pre></td></tr></table></figure>
-
 <p>一元运算符同理</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.exp(x)</span><br></pre></td></tr></table></figure>
-
 <p><strong>连结(concatenate)</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X = np.arange(<span class="number">12</span>).reshape(<span class="number">3</span>, <span class="number">4</span>)  </span><br><span class="line">Y = np.array([[<span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]])  </span><br><span class="line">np.concatenate([X, Y], axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>例如，沿着axis&#x3D;0连结，最终得到的张量其轴0的长度为二者之和。</p>
+<p>例如，沿着axis=0连结，最终得到的张量其轴0的长度为二者之和。</p>
 <p><strong>逻辑运算符 Bool</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X == Y</span><br></pre></td></tr></table></figure>
-
-<h4 id="广播-Broadcast"><a href="#广播-Broadcast" class="headerlink" title="广播 Broadcast"></a><strong>广播 Broadcast</strong></h4><p>在形状不同的张量上按元素操作，张量会自动扩展以满足同样形状的需求。</p>
-<h4 id="索引和切片"><a href="#索引和切片" class="headerlink" title="索引和切片"></a><strong>索引和切片</strong></h4><p>与Python数组相同，略</p>
-<h4 id="内存节省"><a href="#内存节省" class="headerlink" title="内存节省"></a><strong>内存节省</strong></h4><p>运行一些操作可能会导致为新结果分配内存<br>例如,如果用Y &#x3D; X + Y,我们将取消引用Y指向的张量,  而是指向新分配的内存处的张量。<br>需要尽量执行原地操作 <code>Y[:]  = &lt;expression&gt;</code>减少内存的开销.</p>
+<h4 id="广播-broadcast"><strong>广播 Broadcast</strong></h4>
+<p>在形状不同的张量上按元素操作，张量会自动扩展以满足同样形状的需求。</p>
+<h4 id="索引和切片"><strong>索引和切片</strong></h4>
+<p>与Python数组相同，略</p>
+<h4 id="内存节省"><strong>内存节省</strong></h4>
+<p>运行一些操作可能会导致为新结果分配内存<br>
+例如,如果用Y = X + Y,我们将取消引用Y指向的张量,  而是指向新分配的内存处的张量。<br>
+需要尽量执行原地操作 <code>Y[:]  = &lt;expression&gt;</code>减少内存的开销.</p>
 
     </div>
 
@@ -297,7 +302,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">导入模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAndarray%E7%9A%84Instance"><span class="nav-number">2.</span> <span class="nav-text">创建ndarray的Instance.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E6%92%AD-Broadcast"><span class="nav-number">4.</span> <span class="nav-text">广播 Broadcast</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%92%8C%E5%88%87%E7%89%87"><span class="nav-number">5.</span> <span class="nav-text">索引和切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E8%8A%82%E7%9C%81"><span class="nav-number">6.</span> <span class="nav-text">内存节省</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">导入模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAndarray%E7%9A%84instance"><span class="nav-number">2.</span> <span class="nav-text">创建ndarray的Instance.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E6%92%AD-broadcast"><span class="nav-number">4.</span> <span class="nav-text">广播 Broadcast</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%92%8C%E5%88%87%E7%89%87"><span class="nav-number">5.</span> <span class="nav-text">索引和切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E8%8A%82%E7%9C%81"><span class="nav-number">6.</span> <span class="nav-text">内存节省</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -398,11 +403,6 @@
   
 
   
-      
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
-  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
-
 
   
 

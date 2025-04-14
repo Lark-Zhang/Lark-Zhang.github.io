@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="environment.yml 是一个用于定义 ​​Python 虚拟环境​​ 或 ​​Conda 环境​​ 的配置文件，通常与 ​​Anaconda​​ 或 ​​Miniconda​​ 一起使用。它允许你指定环境名称、依赖包及其版本，以便在不同机器或用户之间轻松复现相同的开发环境。 文件结构1234567891011name: my_env       # 环境名称channels:">
+  <meta name="description" content="environment.yml 是一个用于定义 ​​Python 虚拟环境​​ 或 ​​Conda 环境​​ 的配置文件，通常与 ​​Anaconda​​ 或 ​​Miniconda​​ 一起使用。它允许你指定环境名称、依赖包及其版本，以便在不同机器或用户之间轻松复现相同的开发环境。 文件结构 1234567891011name: my_env       # 环境名称channels:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="environment.yml配置文件">
 <meta property="og:url" content="http://example.com/2025/04/14/environment.yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Lark&#39;site">
-<meta property="og:description" content="environment.yml 是一个用于定义 ​​Python 虚拟环境​​ 或 ​​Conda 环境​​ 的配置文件，通常与 ​​Anaconda​​ 或 ​​Miniconda​​ 一起使用。它允许你指定环境名称、依赖包及其版本，以便在不同机器或用户之间轻松复现相同的开发环境。 文件结构1234567891011name: my_env       # 环境名称channels:">
+<meta property="og:description" content="environment.yml 是一个用于定义 ​​Python 虚拟环境​​ 或 ​​Conda 环境​​ 的配置文件，通常与 ​​Anaconda​​ 或 ​​Miniconda​​ 一起使用。它允许你指定环境名称、依赖包及其版本，以便在不同机器或用户之间轻松复现相同的开发环境。 文件结构 1234567891011name: my_env       # 环境名称channels:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-14T10:01:20.047Z">
 <meta property="article:modified_time" content="2025-04-14T10:01:20.047Z">
@@ -192,13 +192,13 @@
 
       
         <p><code>environment.yml</code> 是一个用于定义 ​<strong>​Python 虚拟环境​</strong>​ 或 ​<strong>​Conda 环境​</strong>​ 的配置文件，通常与 ​<strong>​Anaconda​</strong>​ 或 ​<strong>​Miniconda​</strong>​ 一起使用。它允许你指定环境名称、依赖包及其版本，以便在不同机器或用户之间轻松复现相同的开发环境。</p>
-<h3 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">name: my_env       <span class="comment"># 环境名称</span></span><br><span class="line">channels:          <span class="comment"># 包下载的渠道（优先级从上到下）</span></span><br><span class="line">  - conda-forge</span><br><span class="line">  - defaults</span><br><span class="line">dependencies:      <span class="comment"># 依赖项列表</span></span><br><span class="line">  - python=3.9     <span class="comment"># 指定Python版本</span></span><br><span class="line">  - numpy=1.21</span><br><span class="line">  - pandas&gt;=1.3</span><br><span class="line">  - pip:           <span class="comment"># 通过pip安装的包</span></span><br><span class="line">      - torch==1.10</span><br><span class="line">      - requests</span><br></pre></td></tr></table></figure>
-<h3 id="文件使用"><a href="#文件使用" class="headerlink" title="文件使用"></a>文件使用</h3><p><strong>创建环境</strong></p>
+<h3 id="文件结构">文件结构</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">name: my_env       <span class="comment"># 环境名称</span></span><br><span class="line">channels:          <span class="comment"># 包下载的渠道（优先级从上到下）</span></span><br><span class="line">  - conda-forge</span><br><span class="line">  - defaults</span><br><span class="line">dependencies:      <span class="comment"># 依赖项列表</span></span><br><span class="line">  - python=3.9     <span class="comment"># 指定Python版本</span></span><br><span class="line">  - numpy=1.21</span><br><span class="line">  - pandas&gt;=1.3</span><br><span class="line">  - pip:           <span class="comment"># 通过pip安装的包</span></span><br><span class="line">      - torch==1.10</span><br><span class="line">      - requests</span><br></pre></td></tr></table></figure>
+<h3 id="文件使用">文件使用</h3>
+<p><strong>创建环境</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> create -f environment.yml</span><br></pre></td></tr></table></figure>
-
-<p>更新环境 </p>
+<p>更新环境</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> update -f environment.yml --prune</span><br></pre></td></tr></table></figure>
-
 <p>导出当前环境</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># 包含所有精确版本（适合部署）</span></span><br><span class="line">conda <span class="built_in">env</span> <span class="built_in">export</span> &gt; environment.yml </span><br><span class="line"><span class="comment"># 或仅保留显式安装的包（适合开发）</span></span><br><span class="line">conda <span class="built_in">env</span> <span class="built_in">export</span> --from-history &gt; environment.yml</span><br></pre></td></tr></table></figure>
 
@@ -382,11 +382,6 @@
   
 
   
-      
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
-  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
-
 
   
 
