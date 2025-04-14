@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="简单前馈神经网络理论部分感知器一个感知器接受几个二进制输入,$x_1,x_2,…$,并产生一个二进制输出:$$ \text{output} &#x3D; \begin{cases} 0 &amp; \text{if } \sum_{j} w_{j}x_{j} \leq \text{threshold} \ 1 &amp; \text{if } \sum_{j} w_{j}x_{j} &gt; \t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单前馈神经网络">
+<meta property="og:url" content="http://example.com/2025/04/14/%E7%AE%80%E5%8D%95%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="Lark&#39;site">
+<meta property="og:description" content="简单前馈神经网络理论部分感知器一个感知器接受几个二进制输入,$x_1,x_2,…$,并产生一个二进制输出:$$ \text{output} &#x3D; \begin{cases} 0 &amp; \text{if } \sum_{j} w_{j}x_{j} \leq \text{threshold} \ 1 &amp; \text{if } \sum_{j} w_{j}x_{j} &gt; \t">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-14T10:01:11.383Z">
+<meta property="article:modified_time" content="2025-04-14T10:01:11.383Z">
+<meta property="article:author" content="Zekun Zhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2025/04/14/%E7%AE%80%E5%8D%95%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>简单前馈神经网络 | Lark'site</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Lark'site</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/14/%E7%AE%80%E5%8D%95%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zekun Zhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lark'site">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          简单前馈神经网络
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-04-14 18:01:11" itemprop="dateCreated datePublished" datetime="2025-04-14T18:01:11+08:00">2025-04-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="简单前馈神经网络理论部分"><a href="#简单前馈神经网络理论部分" class="headerlink" title="简单前馈神经网络理论部分"></a>简单前馈神经网络理论部分</h3><h4 id="感知器"><a href="#感知器" class="headerlink" title="感知器"></a>感知器</h4><p>一个感知器接受几个二进制输入,$x_1,x_2,…$,并产生一个二进制输出:<br>$$ \text{output} &#x3D; \begin{cases} 0 &amp; \text{if } \sum_{j} w_{j}x_{j} \leq \text{threshold} \ 1 &amp; \text{if } \sum_{j} w_{j}x_{j} &gt; \text{threshold} \end{cases} $$<br>通过预先设计权重和偏置可以设计逻辑电路,但是无法自动学习.</p>
+<h4 id="S型神经元"><a href="#S型神经元" class="headerlink" title="S型神经元"></a>S型神经元</h4><p>使用$\sigma$函数作为激活函数,可以实现输出反映权重和偏置的微小变化<br>$$ \Delta \text{output} \approx \sum_{j} \frac{\partial \text{output}}{\partial w_{j}} \Delta w_{j} + \frac{\partial \text{output}}{\partial b} \Delta b $$</p>
+<h4 id="神经网络的架构"><a href="#神经网络的架构" class="headerlink" title="神经网络的架构"></a>神经网络的架构</h4><p>前馈神经网络:输入层、隐藏层、输出层</p>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>定义损失函数来描述量化模型的拟合效果<br>$$C(w,b) \equiv \frac{1}{2n} \sum_{x} |y(x) - a|^2$$<br>其中,$w$表示所有的网格中权重规定集合,$b$是所有的偏置,n是训练输入数据的个数,a是表示当输入为x时输出的向量.或称<strong>均方误差</strong>或者<strong>MSE</strong>.</p>
+<h4 id="梯度下降法学习"><a href="#梯度下降法学习" class="headerlink" title="梯度下降法学习"></a>梯度下降法学习</h4><p>训练的目的:找到最小化$C(w,b)$的权重和偏置.<br>假设$C&#x3D;C(v_1,v_2)$<br>$$ \Delta C \approx  \frac{\partial C }{\partial v_{1}} \Delta v_{1} + \frac{\partial C}{\partial v_2} \Delta v_2 $$<br>定义$C$的梯度为偏导数的向量,$(\frac{\partial C}{\partial v_1},\frac{\partial C}{\partial v_2})^T$,定义$\Delta v \equiv (\Delta v_1,\Delta v_2)$</p>
+<p>$$\nabla C \equiv \left( \frac{\partial C}{\partial v_1}, \frac{\partial C}{\partial v_2} \right)^T$$<br>则$$\Delta C \approx \nabla C · \Delta v$$<br>此时，假设选取<br>$$\Delta v &#x3D; -\eta \nabla C$$<br>$\eta$为一个小正数(<strong>学习速率</strong>),则$\Delta C \approx -\eta \nabla C \cdot \nabla C &#x3D; -\eta |\nabla C|^2$,保证了$\Delta C \leq 0$ .</p>
+<p>算法矛盾:<br>$\eta$需要足够小来使微积分方程获得更好的近似,同时如果太小的话又会导致效率过低.<br>在实现的过程中,$\eta$是变化的.在固定步长$\Delta v&#x3D; \epsilon$ 时,$\eta &#x3D; \epsilon&#x2F; | \Delta C|$</p>
+<h4 id="梯度下降法神经网络"><a href="#梯度下降法神经网络" class="headerlink" title="梯度下降法神经网络"></a>梯度下降法神经网络</h4><p>常采用随机梯度下降,通过随即选取小批量数据(m个输入)来期望其平均值大致等于整个$\nabla C$的平均值<br>$$ \frac{\sum_{j &#x3D; 1}^{m} \nabla C_{X_j}}{m} \approx \frac{\sum_{x} \nabla C_{x}}{n} &#x3D; \nabla C $$</p>
+<h3 id="代码实现部分"><a href="#代码实现部分" class="headerlink" title="代码实现部分"></a>代码实现部分</h3><h4 id="Network对象"><a href="#Network对象" class="headerlink" title="Network对象"></a><code>Network</code>对象</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># 初始化</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Network</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, sizes</span>):</span><br><span class="line">		<span class="variable language_">self</span>.num_layers = <span class="built_in">len</span>(sizes)</span><br><span class="line">		<span class="variable language_">self</span>.sizes = sizes</span><br><span class="line">		<span class="variable language_">self</span>.biases = [np.random.randn(y, <span class="number">1</span>) <span class="keyword">for</span> y <span class="keyword">in</span> sizes[<span class="number">1</span>:]]</span><br><span class="line">		<span class="variable language_">self</span>.weights = [np.random.randn(y, x) </span><br><span class="line">		                <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(sizes[:-<span class="number">1</span>], sizes[<span class="number">1</span>:])]</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">feedforward</span>(<span class="params">self, a</span>):</span><br><span class="line">		<span class="string">&quot;&quot;&quot;Return the output of the network if ``a`` is input.&quot;&quot;&quot;</span></span><br><span class="line">		<span class="keyword">for</span> b, w <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="variable language_">self</span>.biases, <span class="variable language_">self</span>.weights):</span><br><span class="line">			a = sigmoid(np.dot(w, a)+b)</span><br><span class="line">		<span class="keyword">return</span> a</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">SGD</span>(<span class="params">self, training_data, epochs, mini_batch_size, eta,</span></span><br><span class="line"><span class="params">			test_data=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">		<span class="string">&quot;&quot;&quot;Train the neural network using mini-batch stochastic</span></span><br><span class="line"><span class="string">		gradient descent. The ``training_data`` is a list of tuples</span></span><br><span class="line"><span class="string">		``(x, y)`` representing the training inputs and the desired</span></span><br><span class="line"><span class="string">		outputs. The other non-optional parameters are</span></span><br><span class="line"><span class="string">		self-explanatory. If ``test_data`` is provided then the</span></span><br><span class="line"><span class="string">		network will be evaluated against the test data after each</span></span><br><span class="line"><span class="string">		epoch, and partial progress printed out. This is useful for</span></span><br><span class="line"><span class="string">		tracking progress, but slows things down substantially.&quot;&quot;&quot;</span></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">update_mini_batch</span>(<span class="params">self, mini_batch, eta</span>):</span><br><span class="line"></span><br><span class="line">		<span class="string">&quot;&quot;&quot;Update the network&#x27;s weights and biases by applying</span></span><br><span class="line"><span class="string">		gradient descent using backpropagation to a single mini batch.</span></span><br><span class="line"><span class="string">		The ``mini_batch`` is a list of tuples ``(x, y)``, and ``eta``</span></span><br><span class="line"><span class="string">		is the learning rate.&quot;&quot;&quot;</span></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">backprop</span>(<span class="params">self, x, y</span>):</span><br><span class="line">	</span><br><span class="line">	<span class="string">&quot;&quot;&quot;Return a tuple ``(nabla_b, nabla_w)`` representing the</span></span><br><span class="line"><span class="string">	gradient for the cost function C_x. ``nabla_b`` and</span></span><br><span class="line"><span class="string">	``nabla_w`` are layer-by-layer lists of numpy arrays, similar</span></span><br><span class="line"><span class="string">	to ``self.biases`` and ``self.weights``.&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>调用<code>__init__</code> 初始化可以获取一个Network实例,包含了神经网络的大小、所有的偏置和权重信息.偏置和权重信息是随即分布的,其满足均值为0,标准差为1的高斯分布.</li>
+<li><code>feedforward</code>函数的工作原理:<br>  对于一个权值$w^l_{jk}$来说，其表示第$l$层的第$j$个神经元接收到来自第$l-1$层的第$k$个神经元的权值.<br>  对于一个偏置$b^l_j$来说，其表示第$l$层的第$j$个神经元的偏置.<br>  对于一个激活值$a^l_j$来说，其表示第$l$层第$j$个神经元的输出值.<br>  那么，以下公式成立:<br>$$a^l_j&#x3D;\sigma(\sum_k^k{w^l_{jk}a^{l-1}_k+b^l_j)}$$<br>  输入向量a: 输入层x1的向量<br>  遍历为对每一层遍历,b为当前层的偏置向量,当前层x1的向量;w为权重向量,大小为当前层x前一层.在迭代过程中,a将为变成当前层的输出,下一层的输入,循环直到最后一层.<br>  返回最后一层的输出.<br>  可以向量表示为$$a^{(L)}&#x3D;σ(W^{(L)}a^{(L−1)}+b^{(L)})$$</li>
+<li>SGD方法:实现学习的算法,依靠update_mini_batch和backprop方法.</li>
+<li>Backprop方法:反向传播算法,主要是数学推导</li>
+</ul>
+<h4 id="定义-sigma-函数"><a href="#定义-sigma-函数" class="headerlink" title="定义$\sigma$函数"></a>定义$\sigma$函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sigmoid</span>(<span class="params">z</span>):</span><br><span class="line">	<span class="string">&quot;&quot;&quot;The sigmoid function.&quot;&quot;&quot;</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">1.0</span>/(<span class="number">1.0</span>+np.exp(-z))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sigmoid_prime</span>(<span class="params">z</span>):</span><br><span class="line">	<span class="string">&quot;&quot;&quot;Derivative of the sigmoid function.&quot;&quot;&quot;</span></span><br><span class="line">	<span class="keyword">return</span> sigmoid(z)*(<span class="number">1</span>-sigmoid(z))</span><br></pre></td></tr></table></figure>
+
+<p>用于实现平滑的决策.</p>
+<h3 id="反向传播算法"><a href="#反向传播算法" class="headerlink" title="反向传播算法"></a>反向传播算法</h3>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/04/14/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="prev" title="线性神经网络">
+      <i class="fa fa-chevron-left"></i> 线性神经网络
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/04/14/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86(Pandas%E5%85%A5%E9%97%A8)/" rel="next" title="数据预处理(Pandas入门)">
+      数据预处理(Pandas入门) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%90%86%E8%AE%BA%E9%83%A8%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">简单前馈神经网络理论部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%84%9F%E7%9F%A5%E5%99%A8"><span class="nav-number">1.1.</span> <span class="nav-text">感知器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#S%E5%9E%8B%E7%A5%9E%E7%BB%8F%E5%85%83"><span class="nav-number">1.2.</span> <span class="nav-text">S型神经元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">神经网络的架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.5.</span> <span class="nav-text">梯度下降法学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.6.</span> <span class="nav-text">梯度下降法神经网络</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E9%83%A8%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">代码实现部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Network%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.1.</span> <span class="nav-text">Network对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-sigma-%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">定义$\sigma$函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">反向传播算法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zekun Zhang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zekun Zhang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
