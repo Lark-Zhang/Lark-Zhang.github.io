@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"lark-zhang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="GitWindows系统可用Git Bash ，是 Git for Windows 的一个组件，它提供了一个基于 MinGW 的命令行仿真环境，允许用户在 Windows 操作系统上使用 Git 命令行工具，就像在 Unix 或 Linux 系统上一样。Git for Windows 是 Git 的官方版本，它包括了 Git 命令行工具、Git GUI（图形用户界面）以及 Git Bash。 设置">
+  <meta name="description" content="softmax回归模型softmax回归跟线性回归一样将输入特征与权重做线性叠加。与线性回归的一个主要不同在于，softmax回归的输出值个数等于标签里的类别数。因此权重数为特征数x输出类别数。(&#x3D;&#x3D;权重矩阵规模&#x3D;&#x3D;)softmax回归同线性回归一样，也是一个单层神经网络。由于每个输出的计算都要依赖于所有的输入，softmax回归的输出层也是一个全连接层。 可以使用gluon创建该模型实例123f">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git和GitHub的用法">
-<meta property="og:url" content="https://lark-zhang.github.io/2025/04/14/Git%E5%92%8CGitHub%E7%9A%84%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:title" content="Softmax回归">
+<meta property="og:url" content="https://lark-zhang.github.io/2025/05/16/Softmax%E5%9B%9E%E5%BD%92/index.html">
 <meta property="og:site_name" content="Lark&#39;site">
-<meta property="og:description" content="GitWindows系统可用Git Bash ，是 Git for Windows 的一个组件，它提供了一个基于 MinGW 的命令行仿真环境，允许用户在 Windows 操作系统上使用 Git 命令行工具，就像在 Unix 或 Linux 系统上一样。Git for Windows 是 Git 的官方版本，它包括了 Git 命令行工具、Git GUI（图形用户界面）以及 Git Bash。 设置">
+<meta property="og:description" content="softmax回归模型softmax回归跟线性回归一样将输入特征与权重做线性叠加。与线性回归的一个主要不同在于，softmax回归的输出值个数等于标签里的类别数。因此权重数为特征数x输出类别数。(&#x3D;&#x3D;权重矩阵规模&#x3D;&#x3D;)softmax回归同线性回归一样，也是一个单层神经网络。由于每个输出的计算都要依赖于所有的输入，softmax回归的输出层也是一个全连接层。 可以使用gluon创建该模型实例123f">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-14T10:01:20.047Z">
-<meta property="article:modified_time" content="2025-04-14T10:01:20.047Z">
+<meta property="article:published_time" content="2025-05-16T03:52:58.480Z">
+<meta property="article:modified_time" content="2025-05-14T03:33:35.264Z">
 <meta property="article:author" content="Zekun Zhang">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://lark-zhang.github.io/2025/04/14/Git%E5%92%8CGitHub%E7%9A%84%E7%94%A8%E6%B3%95/">
+<link rel="canonical" href="https://lark-zhang.github.io/2025/05/16/Softmax%E5%9B%9E%E5%BD%92/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>Git和GitHub的用法 | Lark'site</title>
+  <title>Softmax回归 | Lark'site</title>
   
 
 
@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lark-zhang.github.io/2025/04/14/Git%E5%92%8CGitHub%E7%9A%84%E7%94%A8%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://lark-zhang.github.io/2025/05/16/Softmax%E5%9B%9E%E5%BD%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +167,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Git和GitHub的用法
+          Softmax回归
         </h1>
 
         <div class="post-meta">
@@ -177,8 +177,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2025-04-14 18:01:20" itemprop="dateCreated datePublished" datetime="2025-04-14T18:01:20+08:00">2025-04-14</time>
+              <time title="创建时间：2025-05-16 11:52:58" itemprop="dateCreated datePublished" datetime="2025-05-16T11:52:58+08:00">2025-05-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-05-14 11:33:35" itemprop="dateModified" datetime="2025-05-14T11:33:35+08:00">2025-05-14</time>
+              </span>
 
           
 
@@ -191,10 +198,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>Windows系统可用Git Bash ，是 Git for Windows 的一个组件，它提供了一个基于 MinGW 的命令行仿真环境，允许用户在 Windows 操作系统上使用 Git 命令行工具，就像在 Unix 或 Linux 系统上一样。Git for Windows 是 Git 的官方版本，它包括了 Git 命令行工具、Git GUI（图形用户界面）以及 Git Bash。</p>
-<p>设置git信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email <span class="string">&quot;xx&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;xx&quot;</span></span><br></pre></td></tr></table></figure><br>将云端repo下载到本地:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> xxx.git --depth</span><br><span class="line">git submodule update --init --recursive <span class="comment"># 子模块更新</span></span><br><span class="line">git status</span><br></pre></td></tr></table></figure><br>创建新分支<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b lark/0407_test</span><br></pre></td></tr></table></figure><br>更改并提交<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add xx.py</span><br><span class="line">git commit -m &quot;xxx&quot;</span><br></pre></td></tr></table></figure><br>上传到远程仓库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure></p>
-<p>推荐使用VSCode</p>
-<h3 id="实现Git和GitHub的绑定"><a href="#实现Git和GitHub的绑定" class="headerlink" title="实现Git和GitHub的绑定"></a>实现Git和GitHub的绑定</h3><h4 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h4><p><code>ssh-keygen -t rsa -b 4096 -C &quot;lark&quot;</code><br>然后在指定文件夹获取公钥.<br>将其复制在代码托管平台上,即可使用ssh协议安全实现平台和本地的互联,方便后续代码的上传和下载.Gitee或者Github<br>通过如下代码检查<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(base) lark@lark:~$ ssh -T git@github.com</span><br><span class="line">The authenticity of host <span class="string">&#x27;github.com (198.18.0.6)&#x27;</span> can<span class="string">&#x27;t be established.</span></span><br><span class="line"><span class="string">ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.</span></span><br><span class="line"><span class="string">This key is not known by any other names.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span></span><br><span class="line"><span class="string">Warning: Permanently added &#x27;</span>github.com<span class="string">&#x27; (ED25519) to the list of known hosts.</span></span><br><span class="line"><span class="string">Hi Lark-Zhang! You&#x27;</span>ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>完成之后即可在本地和云端保存同一个repo<br>通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br><span class="line">git push</span><br></pre></td></tr></table></figure><br>来实现代码的上传和下载.</p>
+        <h3 id="softmax回归模型"><a href="#softmax回归模型" class="headerlink" title="softmax回归模型"></a>softmax回归模型</h3><p>softmax回归跟线性回归一样将输入特征与权重做线性叠加。<br>与线性回归的一个主要不同在于，softmax回归的输出值个数等于标签里的类别数。因此权重数为特征数x输出类别数。(==权重矩阵规模==)<br>softmax回归同线性回归一样，也是一个单层神经网络。由于每个输出的计算都要依赖于所有的输入，softmax回归的输出层也是一个全连接层。</p>
+<p>可以使用gluon创建该模型实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet.gluon <span class="keyword">import</span> nn</span><br><span class="line">net = nn.Sequential()</span><br><span class="line">net.add(nn.Dense(<span class="built_in">len</span>(labels)))</span><br></pre></td></tr></table></figure></p>
+<h3 id="softmax运算"><a href="#softmax运算" class="headerlink" title="softmax运算"></a>softmax运算</h3><p>既然分类问题需要得到离散的预测输出，一个简单的办法是将输出值$o_i$当作预测类别是$i$的置信度，并将值最大的输出所对应的类作为预测输出，即输出$argmax_io_i$。<br>然而，直接使用输出层的输出有两个问题。一方面，由于输出层的<strong>输出值的范围不确定</strong>，我们难以直观上判断这些值的意义; 另一方面，由于真实标签是离散值，这些<strong>离散值与不确定范围的输出值之间的误差难以衡量</strong>。</p>
+<p><a target="_blank" rel="noopener" href="https://zh-v1.d2l.ai/chapter_deep-learning-basics/softmax-regression.html">https://zh-v1.d2l.ai/chapter_deep-learning-basics/softmax-regression.html</a></p>
+<p><strong>softmax运算符解决了以上问题。它可以将输出值变换成值为正且和为1的概率分布</strong></p>
+<h3 id="矢量图计算表达式"><a href="#矢量图计算表达式" class="headerlink" title="矢量图计算表达式"></a>矢量图计算表达式</h3><script type="math/tex; mode=display">\boldsymbol{o}^{(i)} = \boldsymbol{x}^{(i)} \boldsymbol{W} + \boldsymbol{b}</script><script type="math/tex; mode=display">\boldsymbol{\hat{y}}^{(i)} = \text{softmax}(\boldsymbol{o}^{(i)})</script><h3 id="交叉熵损失函数"><a href="#交叉熵损失函数" class="headerlink" title="交叉熵损失函数"></a>交叉熵损失函数</h3><p>前面提到，使用softmax运算后可以更方便地与离散标签计算误差。<br>我们已经知道，softmax运算将输出变换成一个合法的类别预测分布。实际上，真实标签也可以用类别分布表达：<br>对于样本$i$，我们构造向量$\boldsymbol{y}^{(i)}\in \mathbb{R}^{q}$ ，使其第$y^{(i)}$（样本$i$类别的离散数值）个元素为1，其余为0。<br>这样我们的训练目标可以设为使预测概率分布$\boldsymbol{\hat y}^{(i)}$尽可能接近真实的标签概率分布$\boldsymbol{y}^{(i)}$。</p>
+<p><strong>为什么不使用L2 Loss？</strong></p>
+<p>并不需要预测概率完全等于标签概率。只需要其中正确的标签概率比其余的概率更大即可。平方损失过于严格，会导致损失出现大的波动。</p>
+<p>使用交叉熵(corss entropy)</p>
+<script type="math/tex; mode=display">H\left(\boldsymbol y^{(i)}, \boldsymbol {\hat y}^{(i)}\right ) = -\sum_{j=1}^q y_j^{(i)} \log \hat y_j^{(i)},</script><p>注意到$y_j^{(i)}$只有样本$i$为1,其余都为0。也就是说，交叉熵值关心对正确类别的预测概率。<br>假设训练数据集的样本数为n，损失函数定义为:</p>
+<script type="math/tex; mode=display">\ell(\boldsymbol{\Theta}) = \frac{1}{n} \sum_{i=1}^n H\left(\boldsymbol y^{(i)}, \boldsymbol {\hat y}^{(i)}\right ),</script><p>其中$\boldsymbol{\Theta}$代表模型参数。同样地，如果每个样本只有一个标签，那么交叉熵损失可以简写成$\ell(\boldsymbol{\Theta}) = -(1/n)  \sum<em>{i=1}^n \log \hat y</em>{y^{(i)}}^{(i)}$。<br>从另一个角度来看，我们知道最小化$\ell(\boldsymbol{\Theta})$等价于最大化$\exp(-n\ell(\boldsymbol{\Theta}))=\prod<em>{i=1}^n \hat y</em>{y^{(i)}}^{(i)}$，即最小化交叉熵损失函数等价于最大化训练数据集所有标签类别的联合预测概率。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>softmax回归适用于分类问题。它使用softmax运算输出类别的概率分布。</li>
+<li>softmax回归是一个单层神经网络，输出个数等于分类问题中的类别个数。</li>
+<li>交叉熵适合衡量两个概率分布的差异。</li>
+</ul>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><p>Softmax由于是指数回归，导致无法逼近极端情况(如等于1)</p>
 
     </div>
 
@@ -210,12 +230,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/04/14/environment.yml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" rel="prev" title="environment.yml配置文件">
-      <i class="fa fa-chevron-left"></i> environment.yml配置文件
+    <a href="/2025/05/16/Conda%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
     </a></div>
       <div class="post-nav-item">
-    <a href="/2025/05/16/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/2025/05/16/Fashion-MNIST/" rel="next" title="Fashion-MNIST">
+      Fashion-MNIST <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -275,7 +295,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-number">1.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0Git%E5%92%8CGitHub%E7%9A%84%E7%BB%91%E5%AE%9A"><span class="nav-number">2.</span> <span class="nav-text">实现Git和GitHub的绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH"><span class="nav-number">2.1.</span> <span class="nav-text">SSH</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">softmax回归模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax%E8%BF%90%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text">softmax运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A2%E9%87%8F%E5%9B%BE%E8%AE%A1%E7%AE%97%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">矢量图计算表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">交叉熵损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips"><span class="nav-number">6.</span> <span class="nav-text">Tips</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
